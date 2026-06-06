@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Calendar, Clock, FileText, User, Users, ChevronDown, Home, UserCircle, Calendar as CalendarIcon, Eye, EyeOff, Hospital, Stethoscope, Activity, DollarSign, UserPlus, ShieldCheck } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = process.env.REACT_APP_API_URL;
+
 const Button = ({ children, variant = 'primary', className = '', ...props }) => (
   <button
     className={`inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded-md shadow-sm transition-colors focus:outline-none focus:ring-2 focus:ring-offset-2 ${
@@ -111,7 +113,7 @@ export default function AdminDashboard() {
         // Handle not authenticated case
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/profile', {
+      const response = await fetch(`${API_URL}/api/admin/profile`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -135,7 +137,7 @@ export default function AdminDashboard() {
       if (!token) {
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/total-doctors', {
+      const response = await fetch(`${API_URL}/api/admin/total-doctors`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -157,7 +159,7 @@ export default function AdminDashboard() {
       if (!token) {
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/total-patients', {
+      const response = await fetch(`${API_URL}/api/admin/total-patients`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -179,7 +181,7 @@ export default function AdminDashboard() {
       if (!token) {
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/doctor-overview', {
+      const response = await fetch(`${API_URL}/api/admin/doctor-overview`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -201,7 +203,7 @@ export default function AdminDashboard() {
       if (!token) {
         return;
       }
-      const response = await fetch('http://localhost:5000/api/admin/patient-overview', {
+      const response = await fetch(`${API_URL}/api/admin/patient-overview`, {
         headers: {
           'Authorization': `Bearer ${token}`
         }
@@ -380,7 +382,7 @@ export default function AdminDashboard() {
           navigate('/login');
           return;
         }
-        const response = await fetch('http://localhost:5000/api/admin/profile', {
+        const response = await fetch(`${API_URL}/api/admin/profile`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -475,7 +477,7 @@ export default function AdminDashboard() {
           alert('You are not authenticated. Please log in.');
           return;
         }
-        const response = await fetch('http://localhost:5000/api/admin/add-doctor', {
+        const response = await fetch(`${API_URL}/api/admin/add-doctor`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -599,7 +601,7 @@ export default function AdminDashboard() {
           alert('You are not authenticated. Please log in.');
           return;
         }
-        const response = await fetch('http://localhost:5000/api/admin/add-admin', {
+        const response = await fetch(`${API_URL}/api/admin/add-admin`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
