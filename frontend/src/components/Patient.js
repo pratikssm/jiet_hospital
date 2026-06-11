@@ -450,14 +450,27 @@ export default function PatientDashboard() {
   };
 
   const renderAppointmentBooking = () => {
-    const handleInputChange = (e) => {
-      const { name, value } = e.target;
-      setAppointmentData(prev => ({ ...prev, [name]: value }));
+    
+  const handleInputChange = (e) => {
+  const { name, value } = e.target;
 
-      if (name === 'date' || name === 'doctorId') {
-        fetchAvailableSlots(appointmentData.doctorId, value);
-      }
-    };
+  const updatedData = {
+    ...appointmentData,
+    [name]: value
+  };
+
+  setAppointmentData(updatedData);
+
+  if (
+    updatedData.doctorId &&
+    updatedData.date
+  ) {
+    fetchAvailableSlots(
+      updatedData.doctorId,
+      updatedData.date
+    );
+  }
+};
 
     const handleSubmit = async (e) => {
       e.preventDefault();

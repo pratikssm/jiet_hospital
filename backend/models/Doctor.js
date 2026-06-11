@@ -19,7 +19,7 @@ doctorSchema.pre('save', async function (next) {
   next();
 });
 
-// ✅ Prevent OverwriteModelError
+//  Prevent OverwriteModelError
 const Doctor = mongoose.models.Doctor || mongoose.model('Doctor', doctorSchema);
 
 module.exports = Doctor;

@@ -298,15 +298,15 @@ export default function DoctorDashboard() {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <Clock className="h-4 w-4 text-blue-600" />
-                <span>Completed appointment with John Doe</span>
+                <span>Completed appointment with Dr. Prach Singh</span>
               </li>
               <li className="flex items-center space-x-2">
                 <FileText className="h-4 w-4 text-blue-600" />
-                <span>Updated medical records for Alice Johnson</span>
+                <span>Updated medical records for Nitesh Natyam</span>
               </li>
               <li className="flex items-center space-x-2">
                 <User className="h-4 w-4 text-blue-600" />
-                <span>New patient registered: David Lee</span>
+                <span> patient registered</span>
               </li>
             </ul>
           </CardContent>

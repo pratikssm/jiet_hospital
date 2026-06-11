@@ -59,6 +59,21 @@ router.put('/profile', auth, async (req, res) => {
 router.post('/book-appointment', auth, async (req, res) => {
   try {
     const { doctorId, date, time, reason } = req.body;
+
+    if (!doctorId || !date || !time || !reason) {
+      return res.status(400).json({
+        error: 'All fields are required'
+      });
+    }
+
+    const doctor = await Doctor.findById(doctorId);
+
+    if (!doctor) {
+      return res.status(404).json({
+        error: 'Doctor not found'
+      });
+    }
+
     const appointment = new Appointment({
       patientId: req.user.id,
       doctorId,
@@ -66,11 +81,20 @@ router.post('/book-appointment', auth, async (req, res) => {
       time,
       reason
     });
+
     await appointment.save();
-    res.status(201).json({ message: 'Appointment booked successfully', appointment });
+
+    res.status(201).json({
+      message: 'Appointment booked successfully',
+      appointment
+    });
+
   } catch (error) {
-    console.error(error);
-    res.status(500).send({ error: 'Server error' });
+    console.error('BOOK APPOINTMENT ERROR:', error);
+
+    res.status(500).json({
+      error: error.message
+    });
   }
 });
 

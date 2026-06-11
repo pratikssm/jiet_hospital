@@ -1,6 +1,6 @@
 const express = require('express');
 const seedDoctors = require('./doctors.js');
-// const createAdmin = require('./createAdmin.js')
+//const createAdmin = require('./createAdmin.js')
 
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
@@ -18,15 +18,15 @@ app.use(express.json());
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
-    console.log(' Connected to MongoDB');
-    console.log(' DB Name:', mongoose.connection.name);
+    console.log('Connected to MongoDB');
+    console.log('DB Name:', mongoose.connection.name);
   })
   .catch((err) => {
-    console.error(' Could not connect to MongoDB', err);
+    console.error('Could not connect to MongoDB', err);
   });
 
 // seedDoctors();
-
+//createAdmin();
 // Routes
 app.use('/api/signup', require('./routes/signup'));
 app.use('/api/login', require('./routes/login'));
@@ -34,12 +34,10 @@ app.use('/api/admin', require('./routes/admin'));
 app.use('/api/doctor', require('./routes/doctor'));
 app.use('/api/patient', require('./routes/patient'));
 
-// Root Route
 app.get('/', (req, res) => {
   res.send('Welcome to the Hospital Management System API');
 });
 
-// Start Server
 app.listen(PORT, () => {
-  console.log(` Server is running on port ${PORT}`);
+  console.log(`Server is running on port ${PORT}`);
 });
